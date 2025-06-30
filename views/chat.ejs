@@ -1,12 +1,14 @@
 <style>
 
 </style>
+<!-- Page for chating -->
 <h3>Welcome <%= user.email %></h3>
 <ul  id="messages"></ul>
 <form id="form">
   <input  id="input" autocomplete="off" /><button>Send</button>
 </form>
 
+<!-- js with socket.io logic -->
 <script src="/socket.io/socket.io.js"></script>
 <script>
   const socket = io();
