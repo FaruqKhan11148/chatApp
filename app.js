@@ -67,14 +67,14 @@ app.get('/chat', (req, res) => {
 
 // Socket.IO
 io.on('connection', (socket) => {
-  console.log(`🟢 User connected: ${socket.id}`);
+  console.log(`User connected: ${socket.id}`);
 
   socket.on('chat message', (msg) => {
     io.emit('chat message', msg);
   });
 
   socket.on('disconnect', () => {
-    console.log(`🔴 User disconnected: ${socket.id}`);
+    console.log(`User disconnected: ${socket.id}`);
   });
 });
 
