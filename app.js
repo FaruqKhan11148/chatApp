@@ -12,13 +12,13 @@ require('dotenv').config();
 
 const io = new Server(server);
 
-// Connect MongoDB
+// Connect MongoDB with current page
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-// Middlewares
+// Middlewares in use
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -29,15 +29,17 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// Routes
+// main route
 app.get('/', (req, res) => {
   res.redirect('/login');
 });
 
+// login route to get login page
 app.get('/login', (req, res) => {
   res.render('login');
 });
 
+// login route to send info to DB
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
@@ -48,10 +50,12 @@ app.post('/login', async (req, res) => {
   res.send('Invalid login');
 });
 
+// Register page to get page
 app.get('/register', (req, res) => {
   res.render('register');
 });
 
+// send data to backend
 app.post('/register', async (req, res) => {
   const { email, password } = req.body;
   const hash = await bcrypt.hash(password, 10);
