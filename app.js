@@ -24,7 +24,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 app.use(session({
-  secret: 'chatSecret',
+  secret: 'faruq111',
   resave: false,
   saveUninitialized: false
 }));
@@ -64,6 +64,7 @@ app.post('/register', async (req, res) => {
   res.redirect('/login');
 });
 
+// to get chat loaded
 app.get('/chat', (req, res) => {
   if (!req.session.user) return res.redirect('/login');
   res.render('chat', { user: req.session.user });
@@ -82,5 +83,6 @@ io.on('connection', (socket) => {
   });
 });
 
+// port=3000;
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`🚀 Server running on ${PORT}`));
