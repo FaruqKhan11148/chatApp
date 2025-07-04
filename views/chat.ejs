@@ -28,6 +28,7 @@
     }
   });
 
+  // connection to socket.io
   socket.on('chat message', (msg) => {
     const li = document.createElement('li');
     li.textContent = msg;
